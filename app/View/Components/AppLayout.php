@@ -6,6 +6,12 @@ use Illuminate\View\Component;
 
 class AppLayout extends Component
 {
+    public string $pageTitle;
+
+    public function __construct($pageTitle = 'Laravel')
+    {
+        $this->pageTitle = $pageTitle;
+    }
     /**
      * Get the view / contents that represents the component.
      *
