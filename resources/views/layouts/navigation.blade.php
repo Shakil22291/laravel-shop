@@ -1,13 +1,18 @@
 <nav class="bg-white" x-data="{show: false}">
     <x-container class="flex justify-between">
         <div class="flex items-center md:space-x-10">
-            <x-application-logo></x-application-logo>
+            <a href="/" class="hidden md:block">
+                <x-application-logo></x-application-logo>
+            </a>
             <button
                 @click="show = ! show"
-                class="focus:outline-none ml-1 mt-1 text-gray-500 transition transform md:hidden"
-                :class="{'rotate-180' : show}"
+                class="focus:outline-none ml-1 mt-1 text-gray-500 md:hidden flex items-center space-x-2"
             >
-                <x-icons.arrow-down></x-icons.arrow-down>
+                <x-application-logo></x-application-logo>
+                <x-icons.arrow-down
+                    class="transition transform"
+                    x-bind:class="{'rotate-180' : show}"
+                ></x-icons.arrow-down>
             </button>
 
             {{-- Left Nav --}}
@@ -23,12 +28,17 @@
             <div class="hidden md:flex space-x-5">
                @guest
                    <x-nav-link href="{{ route('register') }}">Register</x-nav-link>
-                   <x-nav-link href="{{ route('Login') }}">Login</x-nav-link>
+                   <x-nav-link href="{{ route('login') }}">Login</x-nav-link>
                @else
                     <x-nav-link href="{{ route('dashboard') }}" :active="Request::routeIs('dashboard')">DashBord</x-nav-link>
                @endguest
             </div>
-            <a href="#"><x-icons.cart></x-icons.cart></a>
+            <a href="#" class="relative">
+                <span
+                    class="text-xs w-5 h-5 flex items-center justify-center rounded-full bg-red-500 absolute -top-1/3 -left-1/3 text-red-100"
+                >23</span>
+                <x-icons.cart></x-icons.cart>
+            </a>
         </div>
     </x-container>
 
